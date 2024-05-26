@@ -8,27 +8,24 @@ const validate = {};
  * ********************************* */
 validate.registationRules = () => {
   return [
-    // firstname is required and must be string
     body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 1 })
-      .withMessage("Please provide a first name."), // on error this message is sent.
+      .withMessage("Please provide a first name."),
 
-    // lastname is required and must be string
     body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 2 })
-      .withMessage("Please provide a last name."), // on error this message is sent.
+      .withMessage("Please provide a last name."), 
 
-    // valid email is required and cannot already exist in the database
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail() 
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
         const emailExists = await accountModel.checkExistingEmail(
@@ -39,7 +36,6 @@ validate.registationRules = () => {
         }
       }),
 
-    // password is required and must be strong password
     body("account_password")
       .trim()
       .notEmpty()
@@ -63,12 +59,10 @@ validate.checkRegData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildRegistrationView();
     res.render("account/registration", {
       errors,
       title: "Registration",
       nav,
-      // view,
       account_firstname,
       account_lastname,
       account_email,
@@ -82,19 +76,12 @@ validate.checkRegData = async (req, res, next) => {
  * *************************** */
 validate.loginRules = () => {
   return [
-    // valid email is required and cannot already exist in the database
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail() 
       .withMessage("A valid email is required."),
-    //   .custom(async (account_email) => {
-    //     const emailExists = await accountModel.checkExistingEmail(account_email)
-    //     if (emailExists) {
-    //       throw new Error("Email exists. Please log in or use different email")
-    //     }
-    //   })
-    // password is required and must be strong password
+
     body("account_password")
       .trim()
       .notEmpty()
@@ -114,12 +101,10 @@ validate.checkLoginData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildLoginView();
     res.render("account/login", {
       errors,
       title: "Login",
       nav,
-      // view,
       account_email,
       account_password,
     });

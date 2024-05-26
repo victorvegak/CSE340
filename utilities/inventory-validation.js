@@ -8,7 +8,7 @@ const validate = {};
  * ********************************* */
 validate.inventoryRules = () => {
   return [
-    // firstname is required and must be string
+    
     body("inv_make")
       .trim()
       .escape()

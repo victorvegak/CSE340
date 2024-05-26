@@ -11,7 +11,6 @@ async function buildLogin(req, res, next) {
       title: "Login",
       nav,
       errors: null,
-      // view,
     })
 }
 /********************************
@@ -19,12 +18,10 @@ async function buildLogin(req, res, next) {
  ********************************/
 async function buildRegistration(req, res, next) {
     let nav = await utilities.getNav()
-    // const view = utilities.buildRegistrationView()
     res.render("account/registration", {
       title: "Register",
       nav,
       errors: null,
-      // view,
     })
 }
 /* ****************************************
@@ -33,7 +30,6 @@ async function buildRegistration(req, res, next) {
 async function loginAccount(req, res) {
   const { account_email, account_password } = req.body
   res.status(200).send('login process')
-
 
 }
 /* ****************************************
@@ -45,7 +41,6 @@ async function registerAccount(req, res) {
 
 let hashedPassword
 try {
-  // regular password and cost (salt is generated automatically)
   hashedPassword = await bcrypt.hashSync(account_password, 10)
 } catch (error) {
   req.flash("notice", 'Sorry, there was an error processing the registration.')
@@ -71,7 +66,7 @@ try {
       title: "Login",
       nav,
       errors: null,
-      // view,
+     
     })
   } else {
     req.flash("notice", "Sorry, the registration failed.")
@@ -79,7 +74,7 @@ try {
       title: "Registration",
       nav,
       errors: null,
-      // view,
+      
     })
   }
 }
@@ -92,7 +87,7 @@ async function buildRegister(req, res, next) {
     title: "Register",
     nav,
     errors: null,
-    // view,
+    
   })
 }
 
