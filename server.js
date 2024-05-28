@@ -56,7 +56,7 @@ app.set("layout", "./layouts/layout")
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use(require("./routes/static"))
 
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))

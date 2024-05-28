@@ -15,35 +15,18 @@
   <% } %>
   
 <div class="register">
-
-            <form action="/account/register" method="POST">
-                <label for="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required>
-
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required>
-
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="password">Password:</label>
-                <div class="password-container">
-                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
-                    <input type="password" id="password" name="password" required minlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-                    <span class="toggle-password" onclick="togglePassword()">Show</span>
-                </div>
-
-                <button type="submit">Register</button>
-            </form>
-    <script>
-    
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleButton = document.querySelector('.toggle-password');
-            const isPassword = passwordInput.type === 'password';
-            passwordInput.type = isPassword ? 'text' : 'password';
-            toggleButton.textContent = isPassword ? 'Hide' : 'Show';
-        }
-           
-    </script>
+          <p>All fields are required.</p>
+          <form class="login-form" method="post" action="/account/register">
+            <fieldset>
+            <label class="top">First name* <input type="text" name="account_firstname" required value="<%= locals.account_firstname %>" required id="firstname"></label>
+            <label class="top">Last name* <input type="text" name="account_lastname" required value="<%= locals.account_lastname %>" required id="lastname"></label>              
+              <label class="top">Email* <input type="email" name="account_email" placeholder="someone@gmail.com" required value="<%= locals.account_email %>" required id="email"
+                  autocomplete="email"></label>
+              <label class="top">Password* <input type="password" name="account_password" required id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+                  autocomplete="password"></label>
+              <p>Password must be at least 12 characters and include at least: 1 capital letter, 1 lowercase letter, 1 number, and 1 special character</p>    
+              <input type="submit" value="Register" class="submitBtn">
+            </fieldset>
+          </form>
+          
 </div>
