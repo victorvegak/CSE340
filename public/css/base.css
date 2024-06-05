@@ -225,28 +225,29 @@ Login */
   justify-items: center;
 }
 
-.login {
-  background-color: #1c5175;
+.login-form {
+  background-color: #fff;
   padding: 20px;
   border: 2px solid #fff;
   border-radius: 8px 8px 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 2);
-  width: 50%;
+  width: max-content;
   text-align: center;
   color: #fff;
   -webkit-border-radius: 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px;
   -ms-border-radius: 8px 8px 8px;
   -o-border-radius: 8px 8px 8px;
+  display: grid;
 }
-.login label {
+.login-form label {
   display: block;
   text-align: left;
   margin-bottom: 5px;
   font-weight: bold;
   
 }
-.login input {
+.login-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -259,7 +260,7 @@ Login */
   -o-border-radius: 10px;
 
 }
-.login button {
+.login-form button {
   
   padding: 5px 20px;
   border: 2px solid #36454f;
@@ -273,13 +274,17 @@ Login */
   -o-border-radius: 10px;
 }
 
-.login button:hover {
+.login-form button:hover {
   background-color: #0056b3;
 }
 
-.login a {
-  color: #ffffff;
+.login-form a {
+  color: blue;
   text-decoration: underline;
+}
+
+.login-form p {
+  color: black;
 }
 
 /*register section Unit 4*/
@@ -325,14 +330,7 @@ input.submitBtn:hover {
   /* Space for the toggle button */
 }
 
-/*.register {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #007bff;
-}*/
+
 .toggle-password {
   border: 2px solid #000;
   border-radius: 5px;
@@ -444,17 +442,54 @@ label{
 }
 
 
-.loggin-form{
-  background-color: ghostwhite;
-    padding: 20px;
-    border: 2px solid black;
-    /* White border */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: max-content;
-    text-align: center;
+
+/*#unit 5**/
+
+#account-management-view h2,
+p,
+h3 {
+  margin: 30px;
 }
 
-form .login-form{
-  display: grid;
+#management-main-view h2,
+p {
+  margin: 30px;
+}
+
+
+#classificationList {
+  margin-left: 35%;
+  background-color: rgb(255, 255, 204);
+  padding: 10px;
+}
+
+#inventoryDisplay {
+  margin: 0 auto 0 10px;
+  margin-top: 30px;
+}
+
+
+#all-accounts-view {
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: rgb(203, 243, 255);
+}
+
+tr:hover {
+  background-color: rgb(203, 243, 255);
 }

@@ -1,44 +1,44 @@
 <% if (title) { %>
-    <h1>
-      <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-  
-      <%- messages() %>
-  
-        <% if (errors) { %>
-          <ul class="notice">
-            <% errors.array().forEach(error=> { %>
-              <li>
-                <%= error.msg %>
-              </li>
-              <% }) %>
-          </ul>
-          <% } %>
-        <div class= "loggin-form">
-            <form class="login-form" action="/inv/add-inventory" method="post">
-              <fieldset>
-                <label class="top" id="classification-label">Classification* <%- classificationList %></label>                
-                <label class="top">Make* <input type="text" name="inv_make"
-                    required id="inv_make" value="<%= locals.inv_make %>"></label>
-                <label class="top">Model* <input type="text" name="inv_model"
-                    required id="inv_model" value="<%= locals.inv_model %>"></label>   
-                <label class="top">Description* <textarea name="inv_description" id="inv_description" rows="4" cols="44"><%= locals.inv_model %></textarea></label>                      
-                    
-                <label class="top">Image Path* <input type="text" name="inv_image"
-                    required id="inv_image" value="/images/vechicles/no-image.png"></label> 
-                <label class="top">Thumbnail Path* <input type="text" name="inv_thumbnail"
-                    required id="inv_thumbnail" value="/images/vechicles/no-image.png"></label>   
-                <label class="top">Price* <input type="text" name="inv_price"
-                    required id="inv_price" pattern="^[0-9]*$" value="<%= locals.inv_price %>"></label>                                         
-                <label class="top">Year* <input type="text" name="inv_year"
-                    required id="inv_year" pattern="^[0-9]*$" value="<%= locals.inv_year %>"></label>   
-                <label class="top">Miles* <input type="text" name="inv_miles"
-                    required id="inv_miles" pattern="^[0-9]*$" value="<%= locals.inv_miles %>"></label>   
-                <label class="top">Color* <input type="text" name="inv_color"
-                    required id="inv_color" value="<%= locals.inv_color %>"></label>                       
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') } %>
+  <div id="add-vehicle-view">
+    <%- messages() %>
 
-                <input type="submit" value="Add Vehicle" class="submitBtn">
-              </fieldset>
-            </form>
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.array().forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+
+          <form class="login-form" action="/inv/add-inventory" method="post">
+            <fieldset>
+              <label class="top" id="classification-label">Classification* <%- classificationList %></label>                
+              <label class="top">Make* <input type="text" name="inv_make"
+                  required id="inv_make" value="<%= locals.inv_make %>"></label>
+              <label class="top">Model* <input type="text" name="inv_model"
+                  required id="inv_model" value="<%= locals.inv_model %>"></label>   
+              <label class="top">Description* <textarea name="inv_description" id="inv_description" rows="4" cols="44"><%= locals.inv_model %></textarea></label>                      
+                  
+              <label class="top">Image Path* <input type="text" name="inv_image"
+                  required id="inv_image" value="/images/vechicles/no-image.png"></label> 
+              <label class="top">Thumbnail Path* <input type="text" name="inv_thumbnail"
+                  required id="inv_thumbnail" value="/images/vechicles/no-image.png"></label>   
+              <label class="top">Price* <input type="number" name="inv_price"
+                  required id="inv_price" pattern="^[0-9]*$" value="<%= locals.inv_price %>"></label>                                         
+              <label class="top">Year* <input type="number" name="inv_year"
+                  required id="inv_year" pattern="^[0-9]*$" value="<%= locals.inv_year %>"></label>   
+              <label class="top">Miles* <input type="number" name="inv_miles"
+                  required id="inv_miles" pattern="^[0-9]*$" value="<%= locals.inv_miles %>"></label>   
+              <label class="top">Color* <input type="text" name="inv_color"
+                  required id="inv_color" value="<%= locals.inv_color %>"></label>                       
+
+              <input type="submit" value="Add Vehicle" class="submitBtn">
+            </fieldset>
+          </form>
         </div>

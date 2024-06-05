@@ -1,0 +1,47 @@
+<% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+      <div id="update-view">
+      <%- messages() %>
+  
+        <% if (errors) { %>
+          <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+  
+            <form class="login-form" method="post" action="/account/updateUser">
+              <fieldset>
+                <label class="top">First name* <input type="text" name="account_firstname"
+                    value="<%= locals.accountData.account_firstname %>" required id="firstname"></label>
+                <label class="top">Last name* <input type="text" name="account_lastname"
+                    value="<%= locals.accountData.account_lastname %>" required id="lastname"></label>
+                <label class="top">Email* <input type="email" name="account_email"
+                    value="<%= locals.accountData.account_email %>" required id="email" autocomplete="off"></label>
+  
+                <input type="submit" value="Update Information" class="submitBtn">
+                <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+              </fieldset>
+            </form>
+  
+            <h2>Enter a new password here to change your current pasword</h2>
+  
+            <form class="login-form" method="post" action="/account/updatePassword">
+              <fieldset>
+                <label class="top">Password* <input type="password" name="account_password" required id="password"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" autocomplete="off"></label>
+                <p>Password must be at least 12 characters and include at least:<br> 1 capital letter, 1 lowercase letter, 1
+                  number,<br> and 1 special character</p>
+                <input type="submit" value="Change Password" class="submitBtn">
+                <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+  
+              </fieldset>
+            </form>
+  
+            </div>

@@ -1,38 +1,33 @@
 <% if (title) { %>
-    <h1>
-      <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-  
-      <%- messages() %>
-  
-        <% if (errors) { %>
-          <ul class="notice">
-            <% errors.array().forEach(error=> { %>
-              <li>
-                <%= error.msg %>
-              </li>
-              <% }) %>
-          </ul>
-          <% } %>
-  
-<div class= "class-login">
-    <div class= "login">
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') } %>
 
-    <form id= "loginForm" action="/account/login" method="POST">
-        <fieldset>
-            <label for="account_email">Email:</label>
-            <input type="email" id="account_email" name="account_email" required>
+    <%- messages() %>
 
-            <label for="account_password">Password:</label>
-            <input type="password" id="account_password" name="account_password" required>
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.array().forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
 
-            <button type="submit">LOGIN</button>
-        </fieldset>
-    </form>
-
-    <p>Don't have an account? <a href="/account/registration">Sign-Up</a></p>
-
-    </div>    
-</div>
+          <form class="login-form" id="loginForm" action="/account/login" method="post">
+            <fieldset>
+              <label class="top">Email* <input type="email" name="account_email" placeholder="someone@gmail.com" value="<%= locals.account_email %>"
+                  required id="email" autocomplete="email"></label>
+              <label class="top">Password* <input type="password" name="account_password" required id="password"
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+                  autocomplete="current-password"></label>
+              <p>Password must be at least 12 characters and include at least: 1 capital letter, 1 lowercase letter, 1 number, and 1 special character</p>
+              <input type="submit" value="Login" class="submitBtn">
+              <div>
+                <p>No account?</p><a href="/account/registration">Sign-up</a>
+              </div>
+            </fieldset>
+          </form>
 

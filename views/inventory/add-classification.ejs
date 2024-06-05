@@ -1,11 +1,11 @@
 <% if (title) { %>
-    <h1>
-      <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-  
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') } %>
+    <div id="add-classification-view">
       <%- messages() %>
-  
+
         <% if (errors) { %>
           <ul class="notice">
             <% errors.array().forEach(error=> { %>
@@ -15,13 +15,13 @@
               <% }) %>
           </ul>
           <% } %>
-          <div class="addNew">
+
             <form class="login-form" action="/inv/add-classification" method="post">
-              <fieldset class="anv">
-                <label class="top">Classification Name* <input type="text" name="classification_name"
-                    required id="classification_name" pattern="^[a-zA-Z]*$" ></label>
+              <fieldset>
+                <label class="top">Classification Name* <input type="text" name="classification_name" required
+                    id="classification_name" pattern="^[a-zA-Z]*$"></label>
                 <p>Name must be alphabetic characters only</p>
                 <input type="submit" value="Add Classification" class="submitBtn">
               </fieldset>
             </form>
-          </div>  
+    </div>

@@ -1,0 +1,29 @@
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') } %>
+  <div id="account-management-view">
+    <%- messages() %>
+
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.array().forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+        <h2> Welcome <%= locals.accountData.account_firstname %> </h2>
+        <p><a title="Update Account Information" href="/account/update/<%- locals.accountData.account_id %>">Update Account Information</a></p>
+          <% if (locals.accountData.account_type == 'Employee'|| locals.accountData.account_type == 'Admin') { %>
+            <h3>Inventory Management</h3>
+            <p><a title="Go to Vehicle Management Page" href="/inv/"> Inventory Management </a></p>
+        <% } %>
+         
+        <p><a title="View All Accounts" href="/account/all">View All Accounts</a></p>
+
+        
+
+        </div>             
