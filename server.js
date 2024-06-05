@@ -37,7 +37,7 @@ app.use(session({
 }))
 //after install body-parser package
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -55,7 +55,7 @@ app.use(utilities.checkJWTToken)
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout") 
 /* ***********************
  * Routes
  *************************/

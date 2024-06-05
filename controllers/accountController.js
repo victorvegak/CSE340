@@ -8,23 +8,19 @@ require("dotenv").config()
 * *************************************** */
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
-    // let pattern = "^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}:<>?])[A-Za-z\d[!@#$%^&*()_+{}:<>?]{12,}$"
-    // const view = utilities.buildLoginView(pattern)
     res.render("account/login", {
       title: "Login",
       nav,
       errors: null,
-      // view,
+
     })
   }
   async function buildRegistration(req, res, next) {
     let nav = await utilities.getNav()
-    // const view = utilities.buildRegistrationView()
     res.render("account/registration", {
       title: "Register",
       nav,
       errors: null,
-      // view,
     })
 }
 
@@ -84,12 +80,11 @@ async function accountLogin(req, res) {
 * *************************************** */
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
-  // const view = utilities.buildRegistrationView();
   res.render("account/accountmanagement", {
     title: "Account Management",
     nav,
     errors: null,
-    // view,
+
   })
 }
 
@@ -100,10 +95,8 @@ async function buildManagement(req, res, next) {
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
-// Hash the password before storing
 let hashedPassword
 try {
-  // regular password and cost (salt is generated automatically)
   hashedPassword = await bcrypt.hashSync(account_password, 10)
 } catch (error) {
   req.flash("notice", 'Sorry, there was an error processing the registration.')
@@ -125,21 +118,17 @@ try {
       "notice",
       `Congratulations, you\'re registered ${account_firstname}. Please log in.`
     )
-    // const view = utilities.buildLoginView();
     res.status(201).render("account/login", {
       title: "Login",
       nav,
       errors: null,
-      // view,
     })
   } else {
     req.flash("notice", "Sorry, the registration failed.")
-    // const view = utilities.buildRegistrationView();
     res.status(501).render("account/register", {
       title: "Registration",
       nav,
       errors: null,
-      // view,
     })
   }
 }
@@ -150,12 +139,10 @@ try {
 * *************************************** */
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav()
-  // const view = utilities.buildRegistrationView();
   res.render("account/registration", {
     title: "Register",
     nav,
     errors: null,
-    // view,
   })
 }
 
@@ -170,7 +157,6 @@ async function buildUpdate (req, res, next) {
     nav,
     errors: null,
     account_id
-    // view,
   })
 }
 
@@ -197,7 +183,6 @@ async function updateUser(req, res) {
       title: "Account Management",
       nav,
       errors: null,
-      // view,
     })
   } else {
     req.flash("notice", "Sorry, the update failed.")
@@ -209,7 +194,6 @@ async function updateUser(req, res) {
       account_email,
       account_lastname,
       account_id
-      // view,
     })
   }
 }
@@ -221,10 +205,8 @@ async function updateUser(req, res) {
 async function updatePassword(req, res) {
   let nav = await utilities.getNav()
   const {account_password, account_id } = req.body
-// Hash the password before storing
 let hashedPassword
 try {
-  // regular password and cost (salt is generated automatically)
   hashedPassword = await bcrypt.hashSync(account_password, 10)
 } catch (error) {
   req.flash("notice", 'Sorry, there was an error processing the update.')
@@ -233,7 +215,6 @@ try {
     nav,
     errors: null,
     account_id
-    // view,
   })
 }
   const regResult = await accountModel.updatePassword(
@@ -246,16 +227,13 @@ try {
       "notice",
       `Congratulations, you\'ve update your password`
     )
-    // const view = utilities.buildLoginView();
     res.status(201).render("account/accountManagement", {
       title: "Account Management",
       nav,
       errors: null,
-      // view,
     })
   } else {
     req.flash("notice", "Sorry, the update failed.")
-    // const view = utilities.buildRegistrationView();
     res.status(501).render("account/update", {
       title: "Update User",
       nav,
@@ -277,36 +255,7 @@ async function logout (req, res){
 /* ****************************************
 *  Process Registration
 * *************************************** */
-/*async function loginAccount(req, res) {
-  const { account_email, account_password } = req.body
-  res.status(200).send('login process')
 
-
-}*/
-
-/*async function viewAllAccounts(req, res) {
-  let nav = await utilities.getNav();
-  const loggedInUser = req.user; // Assuming you have the user object available in the request
-  const allAccounts = await accountModel.getAllAccounts(5);
-
-  if (loggedInUser && allAccounts.account_type === 'Admin') {
-    try {
-      const allAccounts = await accountModel.getAllAccounts();
-      res.render("account/allaccounts", {
-        title: "All Accounts",
-        nav,
-        errors: null,
-        allAccounts,
-      });
-    } catch (error) {
-      req.flash("notice", "Error fetching all accounts");
-      res.status(500).redirect("/account/");
-    }
-  } else {
-    req.flash("notice", "Only admin can view all accounts.");
-    res.status(403).redirect("/account/");
-  }
-}*/
 async function viewAllAccounts(req, res) {
   let nav = await utilities.getNav();
   try {
@@ -323,6 +272,5 @@ async function viewAllAccounts(req, res) {
 }
 
 
-//buildLogin buildRegister accountLogin registerAccount         // buildManagement buildRegistration 
 module.exports = { logout, updatePassword, updateUser, buildLogin, buildRegistration, 
   buildUpdate, registerAccount, buildRegister, accountLogin, buildManagement, viewAllAccounts }

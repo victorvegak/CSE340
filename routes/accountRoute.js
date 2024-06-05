@@ -17,7 +17,7 @@ router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(a
 router.get(
   "/", 
   utilities.checkLogin, 
-  utilities.handleErrors(accountController.buildManagement)) ///erger
+  utilities.handleErrors(accountController.buildManagement)) 
 
 
 router.get("/all", utilities.checkLogin, utilities.handleErrors(accountController.viewAllAccounts));

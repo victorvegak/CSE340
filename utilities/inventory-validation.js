@@ -8,7 +8,7 @@ const validate = {};
  * ********************************* */
 validate.inventoryRules = () => {
   return [
-    // firstname is required and must be string
+
     body("inv_make")
       .trim()
       .escape()
@@ -95,7 +95,6 @@ validate.checkInventoryData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildRegistrationView();
     let classificationList = await utilities.buildClassificationList(classification_id);
     res.render("inventory/add-inventory", {
       errors,
@@ -140,7 +139,6 @@ validate.checkUpdateData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildRegistrationView();
     let classificationList = await utilities.buildClassificationList(classification_id);
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`
     res.render("inventory/edit-inventory", {
@@ -170,7 +168,6 @@ validate.checkUpdateData = async (req, res, next) => {
  * *************************** */
 validate.addClassificationRules = () => {
   return [
-    // valid email is required and cannot already exist in the database
     body("classification_name")
       .trim()
       .isAlpha()
@@ -193,13 +190,13 @@ validate.checkClassificationData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    // const view = utilities.buildLoginView();
+
     res.render("inventory/add-classification", {
       errors,
       title: "Add New Classification",
       nav,
       classification_name,
-      // view,
+  
     });
     return;
   }
