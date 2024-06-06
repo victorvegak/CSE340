@@ -30,7 +30,7 @@ module.exports = {
 } else {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL_INTERNAL,
-    ssl: true,
+    
   })
   module.exports = pool
 }
